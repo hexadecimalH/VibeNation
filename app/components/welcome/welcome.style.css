@@ -1,0 +1,8 @@
+#main{
+    background:url("app/components/img/login.jpg") no-repeat fixed center;
+    padding:20% 0;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 100% 120%;
+    color:#fff;
+}

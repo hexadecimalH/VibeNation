@@ -42,3 +42,11 @@ jspm_packages
 
 # Output of 'npm pack'
 *.tgz
+
+/dist/
+/typings/
+/e2e/
+/app/*.js
+/app/*.js.map
+/app/*/*.component.js
+/app/*/*.component.js.map
