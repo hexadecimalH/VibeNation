@@ -49,4 +49,8 @@ jspm_packages
 /app/*.js
 /app/*.js.map
 /app/*/*.component.js
+<<<<<<< HEAD
 /app/*/*.component.js.map
+=======
+/app/*/*.component.js.map
+>>>>>>> accd183c6dfe13873e1a959620b82bde35699a3c
