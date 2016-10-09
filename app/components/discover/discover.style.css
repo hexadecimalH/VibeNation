@@ -1,0 +1,131 @@
+.poster{
+    background:url("app/components/img/aa.jpg") no-repeat fixed center;
+    padding:15% 0;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 100% 120%;
+    color:#fff;
+    text-align: center;
+    border-bottom:3pt solid red;
+}
+.poster div h1{
+    font-size:55px;
+    padding:10% 1%;
+    border:2pt solid red;
+}
+.sections{
+    margin:0 10%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.poss{
+    margin:5%;
+    border-bottom:3pt solid red;
+    padding:0;
+    box-shadow: 5px 7px 8px #888888;
+}
+.insider{
+    margin-top:30%;
+    height:10%;
+    background-color:rgba(0,0,0,.5);
+    text-align: center;
+    color:#fff;
+    transition:all ease-in .3s;
+}
+#block1{
+    background:url("app/components/img/1.jpg");
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 100% 120%;
+    transition:all ease-in .3s;
+}
+#block2{
+    background:url("app/components/img/2.jpg");
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 100% 120%;
+}
+#block3{
+    background:url("app/components/img/3.jpg");
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 100% 120%;
+}
+#block4{
+    background:url("app/components/img/4.jpg");
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 100% 120%;
+}
+#block1:hover .insider{
+    margin-top:0;
+    padding:15%;
+    color:red;
+}
+#block2:hover .insider{
+    margin-top:0;
+    padding:15%;
+    color:red;
+}
+#block3:hover .insider{
+    margin-top:0;
+    padding:15%;
+    color:red;
+}
+#block4:hover .insider{
+    margin-top:0;
+    padding:15%;
+    color:red;
+}
+.passat{
+    background:url("app/components/img/bbbb.png");
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 100% 120%;
+    padding:5% 0;
+    text-align:center;
+    border-bottom:3pt solid red;
+}
+.passat h1{
+    color:red;
+}
+.passat p{
+    color:#fff;
+}
+.outter{
+    background:url("app/components/img/5.png");
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 100% 120%;
+    margin:5% 0;
+    padding:0;
+    border-bottom:3pt solid red;
+}
+.sets{
+    margin-top:80%;
+    height:10%;
+    background-color:rgba(0,0,0,.5);
+    text-align: center;
+    color:#fff;
+    transition:all ease-in .3s;
+}
+.outter:hover .sets{
+    margin-top:0;
+    padding:40%;
+    color:red;
+}
+.pic img{
+    width:100%;
+    border-radius:50%;
+}
+.wraper{
+    margin-bottom:5%;
+}
+.rassat{
+    background:url("app/components/img/kk.jpg");
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 100% 120%;
+    padding:8% 0;
+    text-align:center;
+    border-bottom:3pt solid red;
+}

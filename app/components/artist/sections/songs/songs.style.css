@@ -1,0 +1,10 @@
+.album{
+    width:100%;
+}
+.side{
+    padding:0 10%;
+}
+.content h1,div h2{
+    border-bottom:1pt solid #2d2d2d;
+    text-align: center;
+}

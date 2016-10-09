@@ -1,0 +1,25 @@
+#main{
+    background:url("app/components/img/login.jpg") no-repeat fixed center;
+    padding:15% 0;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 100% 120%;
+    color:#fff;
+}
+.button{
+    background-color:#2d2d2d;
+    border-radius:5%;
+    border-bottom:.2em solid red;
+    border-right:.2em solid red;
+    text-align: center;
+    padding:5% 0;
+    margin:5%;
+}
+.button:active{
+    border-bottom:.01em solid red;
+    border-right:.01em solid red;
+}
+.pressed-button{
+    border-bottom:0 solid red !important;
+    border-right:0 solid red !important;
+}
