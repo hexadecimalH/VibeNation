@@ -10,6 +10,7 @@ export * from './artist/sections/albums/albums.component'
 export * from './artist/sections/similar/similar.component'
 export * from './artist/sections/overview/overview.component'
 
+
 //Services
 export * from './youtube/youtube.service'
 export * from './lastFm/lastFm.service'

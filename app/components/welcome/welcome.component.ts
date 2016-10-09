@@ -1,17 +1,18 @@
 import { Component, OnInit ,NgZone} from '@angular/core';
 import { Router} from '@angular/router';
-
 import { User } from '../index';
 import { SignService } from '../signIn/signIn.service';
 import { AuthService } from '../signIn/auth.service';
 
 declare const FB: any;
+
 @Component({
     moduleId: module.id,
     selector: 'welcome',
     templateUrl: 'welcome.component.html',
     styleUrls:['welcome.style.css']
 })
+
 export class WelcomeComponent implements OnInit {   
     private user:User;
     private eMail:string;

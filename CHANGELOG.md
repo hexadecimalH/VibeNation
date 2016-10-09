@@ -1,4 +1,5 @@
 <a name="0.2.10"></a>
+<<<<<<< HEAD
 # 0.2.11 (2016-10-06)
 * Angular v.2.0.2
 * License is MIT
@@ -6,6 +7,8 @@
 * No code changes
 
 <a name="0.2.10"></a>
+=======
+>>>>>>> 792ac3c70707c0d5ef6d0afa54f85ec3a7dc19e8
 # 0.2.10 (2016-09-19)
 * All "Angular 2" references become just "Angular"
 * No code changes

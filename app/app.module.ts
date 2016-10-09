@@ -31,5 +31,6 @@ import { AppComponent }  from './app.component';
                   ],
   bootstrap: [ AppComponent ],
   providers:[YouTubeService,LastFmService,SignService,appRoutingProviders,AuthService]
+
 })
 export class AppModule { }
