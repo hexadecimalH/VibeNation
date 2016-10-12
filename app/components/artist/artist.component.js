@@ -9,12 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var lastFm_service_1 = require('../lastFm/lastFm.service');
 var router_1 = require('@angular/router');
 var ArtistComponent = (function () {
-    function ArtistComponent(router) {
+    function ArtistComponent(router, route, fmService) {
         this.router = router;
+        this.route = route;
+        this.fmService = fmService;
     }
-    ArtistComponent.prototype.ngOnInit = function () { };
+    ArtistComponent.prototype.getArtist = function (artist) {
+        this.fmService.getArtist(artist)
+            .subscribe(function (result) { return console.log(result); }, function (error) { return console.log("error"); });
+    };
+    ArtistComponent.prototype.getArtistName = function () {
+        this.route.params.forEach(function (param) {
+            console.log(param);
+        });
+    };
+    ArtistComponent.prototype.ngOnInit = function () {
+        this.getArtistName();
+    };
     ArtistComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -22,7 +36,7 @@ var ArtistComponent = (function () {
             templateUrl: 'artist.component.html',
             styleUrls: ['artist.style.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, lastFm_service_1.LastFmService])
     ], ArtistComponent);
     return ArtistComponent;
 }());

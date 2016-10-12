@@ -13,10 +13,10 @@ const appRoutes: Routes = [
   { path:'artist',
   children:[
         {path:'',component:ArtistComponent,loadChildren:'overview',children:[
-                {path:'overview',component:OverviewComponent},
-                {path:'songs',component:SongsComponent},
-                {path:'albums',component:AlbumsComponent},
-                {path:'similar',component:SimilarComponent}
+                {path:':artist/overview',component:OverviewComponent},
+                {path:':artist/songs',component:SongsComponent},
+                {path:':artist/albums',component:AlbumsComponent},
+                {path:':artist/similar',component:SimilarComponent}
           ]},
   ]
 }

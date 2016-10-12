@@ -20,3 +20,4 @@ export * from './signIn/auth.service'
 //Models
 export * from './models/song'
 export * from './models/user'
+export * from './models/album'

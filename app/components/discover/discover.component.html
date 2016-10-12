@@ -47,121 +47,20 @@
     </div>
     <div class="row sections">
         <div class="col-sm-12">
-            <div class="col-sm-2 outter">
-                <div class="col-sm-12 sets">
-                    <h6>Album</h6>
-                </div>
-            </div>
-            <div class="col-sm-2 outter">
-                <div class="col-sm-12 sets">
-                    <h6>Album</h6>
-                </div>
-            </div>
-            <div class="col-sm-2 outter">
-                <div class="col-sm-12 sets">
-                    <h6>Album</h6>
-                </div>
-            </div>
-            <div class="col-sm-2 outter">
-                <div class="col-sm-12 sets">
-                    <h6>Album</h6>
-                </div>
-            </div>
-            <div class="col-sm-2 outter">
-                <div class="col-sm-12 sets">
-                    <h6>Album</h6>
-                </div>
-            </div>
-            <div class="col-sm-2 outter">
-                <div class="col-sm-12 sets">
-                    <h6>Album</h6>
+            <div class="col-sm-2 outter"  *ngFor = "let album of albums; let i = index" (click)="redirect(album.ArtistName)" [style.background] = "returnBG(albums[i].ImgString[1])">
+                <div class="col-sm-12 sets" >   
+                    <h6>{{album.AlbumName}}</h6>
                 </div>
             </div>
         </div>
         <div class="col-sm-12 ">
-            <div class="col-sm-4">
+            <div class="col-sm-4" *ngFor = "let track of tracks;" (click)="redirect(track.Artist)">
                 <div class="col-sm-4 pic">
-                    <img src="app/components/img/6.png" alt="">
+                    <img src="{{track.ImgString[1]}}" alt="">
                 </div>
                 <div class="col-sm-8">
-                    <h4>Artist</h4>
-                    <p>Lorem Ipsum</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="col-sm-4 pic">
-                    <img src="app/components/img/6.png" alt="">
-                </div>
-                <div class="col-sm-8">
-                    <h4>Artist</h4>
-                    <p>Lorem Ipsum</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="col-sm-4 pic">
-                    <img src="app/components/img/6.png" alt="">
-                </div>
-                <div class="col-sm-8">
-                    <h4>Artist</h4>
-                    <p>Lorem Ipsum</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12">
-            <div class="col-sm-4">
-                <div class="col-sm-4 pic">
-                    <img src="app/components/img/6.png" alt="">
-                </div>
-                <div class="col-sm-8">
-                    <h4>Artist</h4>
-                    <p>Lorem Ipsum</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="col-sm-4 pic">
-                    <img src="app/components/img/6.png" alt="">
-                </div>
-                <div class="col-sm-8">
-                    <h4>Artist</h4>
-                    <p>Lorem Ipsum</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="col-sm-4 pic">
-                    <img src="app/components/img/6.png" alt="">
-                </div>
-                <div class="col-sm-8">
-                    <h4>Artist</h4>
-                    <p>Lorem Ipsum</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 wraper">
-            <div class="col-sm-4">
-                <div class="col-sm-4 pic">
-                    <img src="app/components/img/6.png" alt="">
-                </div>
-                <div class="col-sm-8">
-                    <h4>Artist</h4>
-                    <p>Lorem Ipsum</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="col-sm-4 pic">
-                    <img src="app/components/img/6.png" alt="">
-                </div>
-                <div class="col-sm-8">
-                    <h4>Artist</h4>
-                    <p>Lorem Ipsum</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="col-sm-4 pic">
-                    <img src="app/components/img/6.png" alt="">
-                </div>
-                <div class="col-sm-8">
-                    <h4>Artist</h4>
-                    <p>Lorem Ipsum</p>
+                    <h4>{{track.Artist}}</h4>
+                    <p>{{track.SongName}}</p>
                 </div>
             </div>
         </div>

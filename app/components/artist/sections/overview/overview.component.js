@@ -9,10 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var OverviewComponent = (function () {
-    function OverviewComponent() {
+    function OverviewComponent(router, route) {
+        this.router = router;
+        this.route = route;
     }
-    OverviewComponent.prototype.ngOnInit = function () { };
+    OverviewComponent.prototype.getArtistName = function () {
+        this.route.params.forEach(function (param) {
+            console.log(param);
+        });
+    };
+    OverviewComponent.prototype.ngOnInit = function () {
+        this.getArtistName();
+    };
     OverviewComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -20,7 +30,7 @@ var OverviewComponent = (function () {
             templateUrl: 'overview.component.html',
             styleUrls: ['overview.style.css', "../../artist.style.css"]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute])
     ], OverviewComponent);
     return OverviewComponent;
 }());

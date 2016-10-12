@@ -1,6 +1,7 @@
+
 <div class="container-fluid">
     <div  class="row">
-        <div class="col-md-12 header" track-scroll (pageYPositionChange)="onPageYChange($event)">
+        <div class="col-md-12 header" [style.background-color]="getStyle()">
             <div class="col-sm-2">
                 <img alt="Company Logo" class="logo" src="app/components/img/VN.png">
             </div>

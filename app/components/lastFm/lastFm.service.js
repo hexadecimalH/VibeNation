@@ -9,12 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/toPromise');
+require('rxjs/add/operator/map');
 var LastFmService = (function () {
-    function LastFmService() {
+    function LastFmService(http) {
+        this.http = http;
+        this.uri = "http://localhost:57730/api/";
     }
+    LastFmService.prototype.getDiscoverAlbums = function () {
+        return this.http.get(this.uri + "GetTopAlbums")
+            .map(function (response) { return response.json(); });
+    };
+    LastFmService.prototype.getDiscoverTracks = function () {
+        return this.http.get(this.uri + "GetTopTracks")
+            .map(function (response) { return response.json(); });
+    };
+    LastFmService.prototype.getArtist = function (name) {
+        return this.http.get(this.uri + "GetArtist/" + name)
+            .map(function (response) { return response.json(); });
+    };
     LastFmService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], LastFmService);
     return LastFmService;
 }());

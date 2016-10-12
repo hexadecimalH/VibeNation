@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router, ActivatedRoute, Params} from '@angular/router'
 @Component({
     moduleId: module.id,
     selector: 'overview',
@@ -7,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
     styleUrls:['overview.style.css',"../../artist.style.css"]
 })
 export class OverviewComponent implements OnInit {
-    constructor() { }
+    constructor(private router:Router,
+                private route: ActivatedRoute) { }
 
-    ngOnInit() { }
+    getArtistName(){
+        this.route.params.forEach((param:Params)=> {
+                        console.log(param)})
+    }
+    ngOnInit() { 
+        this.getArtistName();
+    }
 }

@@ -92,7 +92,7 @@
     color:#fff;
 }
 .outter{
-    background:url("app/components/img/5.png");
+    /*background:url("app/components/img/5.png");*/
     background-position-x: center;
     background-position-y: center;
     background-size: 100% 120%;
@@ -110,7 +110,7 @@
 }
 .outter:hover .sets{
     margin-top:0;
-    padding:40%;
+    padding:35%;
     color:red;
 }
 .pic img{

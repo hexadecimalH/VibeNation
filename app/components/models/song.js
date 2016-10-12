@@ -1,11 +1,9 @@
 "use strict";
 var Song = (function () {
-    function Song(songName, artistName) {
-        this.songName = songName;
-        this.artistName = artistName;
+    function Song() {
     }
     Song.prototype.makeQuery = function () {
-        return this.songName.trim().replace(" ", "+") + "+" + this.artistName.trim().replace(" ", "+");
+        return this.SongName.trim().replace(" ", "+") + "+" + this.Artist.trim().replace(" ", "+");
     };
     return Song;
 }());

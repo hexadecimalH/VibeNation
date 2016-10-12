@@ -10,18 +10,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var auth_service_1 = require('../signIn/auth.service');
-// import { TrackScrollDirective } from '../../directives/track-scroll.directive'
+//  import { TrackScrollDirective } from '../../directives/track-scroll.directive'
 var router_1 = require('@angular/router');
 var HeaderComponent = (function () {
     function HeaderComponent(router, auth) {
         this.router = router;
         this.auth = auth;
+        this.isActive = false;
     }
-    HeaderComponent.prototype.ngOnInit = function () { };
+    HeaderComponent.prototype.scrollDown = function (event) {
+        var offset = document.body.scrollTop;
+        this.isActive = offset > 200 ? true : false;
+    };
+    HeaderComponent.prototype.getStyle = function () {
+        return this.isActive ? "#2d2d2d" : "";
+    };
+    HeaderComponent.prototype.ngOnInit = function () {
+    };
+    __decorate([
+        core_1.HostListener('window:scroll', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], HeaderComponent.prototype, "scrollDown", null);
     HeaderComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            // directives:[],
             selector: 'header',
             templateUrl: 'header.component.html',
             styleUrls: ['header.style.css'],

@@ -21,4 +21,5 @@ __export(require('./signIn/auth.service'));
 //Models
 __export(require('./models/song'));
 __export(require('./models/user'));
+__export(require('./models/album'));
 //# sourceMappingURL=index.js.map

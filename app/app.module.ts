@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { routing, appRoutingProviders} from './app.routing';
 
-// import { TrackScrollDirective } from './directives/track-scroll.directive'
+//import { TrackScrollDirective } from './directives/track-scroll.directive'
 
 import { LastFmService,YouTubeService,HeaderComponent,FooterComponent } from './components/index'
 import {  WelcomeComponent , SignService,AuthService,DiscoverComponent} from './components/index'
@@ -26,8 +26,8 @@ import { AppComponent }  from './app.component';
                   AlbumsComponent,
                   SongsComponent,
                   SimilarComponent,
-                  PlaylistComponent,
-                  // TrackScrollDirective
+                  PlaylistComponent
+                  //TrackScrollDirective
                   ],
   bootstrap: [ AppComponent ],
   providers:[YouTubeService,LastFmService,SignService,appRoutingProviders,AuthService]
