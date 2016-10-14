@@ -3,20 +3,244 @@
         <div class="col-sm-12">
             <div class="col-sm-6 left">
                 <div class="col-sm-3">
-                    <img src="app/components/img/5.png" alt="" class="pic">
+                    <img src="{{ImgStrings}}" alt="" class="pic">
                 </div>
                 <div class="col-sm-9">
-                    <h2>Artist</h2>
+                    <h2>{{artist}}</h2>
                 </div>
             </div>
             <div class="col-sm-4 col-sm-offset-2">
-                <button class="btn btn-default" routerLink="/artist/:artist/overview">overview</button>
-                <button class="btn btn-default" routerLink="/artist/:artist/albums">albums</button>
-                <button class="btn btn-default" routerLink="/artist/:artist/songs">songs</button>
-                <button class="btn btn-default" routerLink="/artist/:artist/similar">similar</button>
+                <button class="btn btn-default" (click)="changePage(0)">overview</button>
+                <button class="btn btn-default" (click)="changePage(1)">albums</button>
+                <button class="btn btn-default" (click)="changePage(2)">songs</button>
+                <button class="btn btn-default" (click)="changePage(3)">similar</button>
             </div>
         </div>
     </div>
     
-        <router-outlet></router-outlet>
+    <div class="row content" *ngIf="activePage[0]">
+        <div class="col-sm-12">
+            <div class="col-sm-8">
+                <h2>Bio</h2>
+                <p>{{Bio}}</p>
+            </div>
+            <div class="col-sm-4">
+                <h2>Songs</h2>
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Rank</th>
+                        <th>Song Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of songs; let i = index">
+                        <td>{{i}}</td>
+                        <td>{{item.SongName}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <h2>Similar</h2>
+            <div class="col-sm-3 similar" *ngFor="let item of similar">
+                <img src="{{item.ImgString[2]}}" alt="" class="album">
+                <h4>{{item.Name}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row content" *ngIf="activePage[1]">
+        <h1>Albums</h1>
+        <div class="col-sm-4">
+            <img src="app/components/img/2.png" alt="" class="album">
+            <h4>Similar Album</h4>
+        </div>
+        <div class="col-sm-4">
+            <img src="app/components/img/2.png" alt="" class="album">
+            <h4>Similar Album</h4>
+        </div>
+        <div class="col-sm-4">
+            <img src="app/components/img/2.png" alt="" class="album">
+            <h4>Similar Album</h4>
+        </div>
+        <div class="col-sm-4">
+            <img src="app/components/img/2.png" alt="" class="album">
+            <h4>Similar Album</h4>
+        </div>
+        <div class="col-sm-4">
+            <img src="app/components/img/2.png" alt="" class="album">
+            <h4>Similar Album</h4>
+        </div>
+        <div class="col-sm-4">
+            <img src="app/components/img/2.png" alt="" class="album">
+            <h4>Similar Album</h4>
+        </div>
+        <div class="col-sm-4">
+            <img src="app/components/img/2.png" alt="" class="album">
+            <h4>Similar Album</h4>
+        </div>
+        <div class="col-sm-4">
+            <img src="app/components/img/2.png" alt="" class="album">
+            <h4>Similar Album</h4>
+        </div>
+        <div class="col-sm-4">
+            <img src="app/components/img/2.png" alt="" class="album">
+            <h4>Similar Album</h4>
+        </div>
+        <div class="col-sm-12">
+            <h2>Similar</h2>
+            <div class="col-sm-3 similar">
+                <img src="app/components/img/2.png" alt="" class="album">
+                <h4>Similar Album</h4>
+            </div>
+            <div class="col-sm-3 similar">
+                <img src="app/components/img/2.png" alt="" class="album">
+                <h4>Similar Album</h4>
+            </div>
+            <div class="col-sm-3 similar">
+                <img src="app/components/img/2.png" alt="" class="album">
+                <h4>Similar Album</h4>
+            </div>
+            <div class="col-sm-3 similar">
+                <img src="app/components/img/2.png" alt="" class="album">
+                <h4>Similar Album</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row content" *ngIf="activePage[2]">
+    <h1>Similar Artist</h1>
+    <div class="col-sm-3">
+        <img src="app/components/img/5.png" alt="" class="album">
+        <h3>Similar</h3>
+    </div>
+    <div class="col-sm-3">
+        <img src="app/components/img/5.png" alt="" class="album">
+        <h3>Similar</h3>
+    </div>
+    <div class="col-sm-3">
+        <img src="app/components/img/5.png" alt="" class="album">
+        <h3>Similar</h3>
+    </div>
+    <div class="col-sm-3">
+        <img src="app/components/img/5.png" alt="" class="album">
+        <h3>Similar</h3>
+    </div>
+    <div class="col-sm-3">
+        <img src="app/components/img/5.png" alt="" class="album">
+        <h3>Similar</h3>
+    </div>
+    <div class="col-sm-3">
+        <img src="app/components/img/5.png" alt="" class="album">
+        <h3>Similar</h3>
+    </div>
+    <div class="col-sm-3">
+        <img src="app/components/img/5.png" alt="" class="album">
+        <h3>Similar</h3>
+    </div>
+    <div class="col-sm-3">
+        <img src="app/components/img/5.png" alt="" class="album">
+        <h3>Similar</h3>
+    </div>
+    <div class="col-sm-3">
+        <img src="app/components/img/5.png" alt="" class="album">
+        <h3>Similar</h3>
+    </div>
+    <div class="col-sm-3">
+        <img src="app/components/img/5.png" alt="" class="album">
+        <h3>Similar</h3>
+    </div>
+    <div class="col-sm-3">
+        <img src="app/components/img/5.png" alt="" class="album">
+        <h3>Similar</h3>
+    </div>
+    <div class="col-sm-3">
+        <img src="app/components/img/5.png" alt="" class="album">
+        <h3>Similar</h3>
+    </div>
+</div>
+    <div class="row content" *ngIf="activePage[3]">
+        <div class="col-sm-12">
+            <div class="col-sm-8">
+                 <h2>Songs</h2>
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Rank</th>
+                        <th>Song Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Heaven's in Here</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Under the God</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Working Class Hero</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Amazing</td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>I Can't Read</td>
+                      </tr>
+                      <tr>
+                        <td>6</td>
+                        <td>Prisoner of Love</td>
+                      </tr>
+                      <tr>
+                        <td>7</td>
+                        <td>Tin Machine</td>
+                      </tr>
+                      <tr>
+                        <td>8</td>
+                        <td>Maggie's Farm (Live)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col-sm-4">
+                <h1>Albums</h1>
+               <div class="col-sm-12 side">
+                   <img src="app/components/img/5.png" alt="" class="album">
+                   <h3>Album</h3>
+               </div>
+               <div class="col-sm-12 side">
+                   <img src="app/components/img/5.png" alt="" class="album">
+                   <h3>Album</h3>
+               </div>
+               <div class="col-sm-12 side">
+                   <img src="app/components/img/5.png" alt="" class="album">
+                   <h3>Album</h3>
+               </div>
+                
+            </div>
+            <div class="col-sm-12">
+                <h2>Similar</h2>
+                <div class="col-sm-3 similar">
+                    <img src="app/components/img/2.png" alt="" class="album">
+                    <h4>Similar Album</h4>
+                </div>
+                <div class="col-sm-3 similar">
+                    <img src="app/components/img/2.png" alt="" class="album">
+                    <h4>Similar Album</h4>
+                </div>
+                <div class="col-sm-3 similar">
+                    <img src="app/components/img/2.png" alt="" class="album">
+                    <h4>Similar Album</h4>
+                </div>
+                <div class="col-sm-3 similar">
+                    <img src="app/components/img/2.png" alt="" class="album">
+                    <h4>Similar Album</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

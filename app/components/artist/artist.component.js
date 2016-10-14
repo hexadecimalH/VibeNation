@@ -11,32 +11,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var lastFm_service_1 = require('../lastFm/lastFm.service');
 var router_1 = require('@angular/router');
+var data_service_1 = require('../lastFm/data.service');
 var ArtistComponent = (function () {
-    function ArtistComponent(router, route, fmService) {
+    function ArtistComponent(router, route, fmService, data) {
         this.router = router;
         this.route = route;
         this.fmService = fmService;
+        this.data = data;
+        this.activePage = [true, false, false, false, false];
     }
-    ArtistComponent.prototype.getArtist = function (artist) {
+    ArtistComponent.prototype.getArtistInfo = function (artist) {
+        var _this = this;
         this.fmService.getArtist(artist)
-            .subscribe(function (result) { return console.log(result); }, function (error) { return console.log("error"); });
+            .subscribe(function (result) { _this.Bio = result.Bio; _this.songs = result.TopTracks; _this.similar = result.Similar; _this.ImgStrings = result.ImgString; console.log(result); }, function (error) { return console.log("error"); });
     };
     ArtistComponent.prototype.getArtistName = function () {
-        this.route.params.forEach(function (param) {
-            console.log(param);
+        return this.route.params.forEach(function (param) {
+            return param;
         });
     };
+    ArtistComponent.prototype.changePage = function (num) {
+        this.activePage = [false, false, false, false, false];
+        this.activePage[num] = true;
+        console.log(this.activePage[num]);
+    };
     ArtistComponent.prototype.ngOnInit = function () {
-        this.getArtistName();
+        this.artist = localStorage.getItem('artist');
+        this.getArtistInfo(this.artist);
     };
     ArtistComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'artist',
             templateUrl: 'artist.component.html',
-            styleUrls: ['artist.style.css']
+            styleUrls: ['artist.style.css'],
+            providers: [data_service_1.DataService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, lastFm_service_1.LastFmService])
+        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, lastFm_service_1.LastFmService, data_service_1.DataService])
     ], ArtistComponent);
     return ArtistComponent;
 }());

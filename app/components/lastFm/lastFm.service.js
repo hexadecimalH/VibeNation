@@ -29,6 +29,10 @@ var LastFmService = (function () {
         return this.http.get(this.uri + "GetArtist/" + name)
             .map(function (response) { return response.json(); });
     };
+    LastFmService.prototype.getArtistInfo = function (name) {
+        return this.http.get(this.uri + "GetArtistInfo/" + name)
+            .map(function (response) { return response.json(); });
+    };
     LastFmService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

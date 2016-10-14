@@ -9,10 +9,6 @@ __export(require('./artist/artist.component'));
 __export(require('./welcome/welcome.component'));
 __export(require('./discover/discover.component'));
 __export(require('./playlist/playlist.component'));
-__export(require('./artist/sections/songs/songs.component'));
-__export(require('./artist/sections/albums/albums.component'));
-__export(require('./artist/sections/similar/similar.component'));
-__export(require('./artist/sections/overview/overview.component'));
 //Services
 __export(require('./youtube/youtube.service'));
 __export(require('./lastFm/lastFm.service'));

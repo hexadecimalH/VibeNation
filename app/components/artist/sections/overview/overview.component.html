@@ -2,9 +2,7 @@
         <div class="col-sm-12">
             <div class="col-sm-8">
                 <h2>Bio</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in euismod augue. Vestibulum auctor bibendum libero. Integer a quam felis. Sed dui lorem, cursus id nisi id, vehicula maximus libero. Nam posuere volutpat mauris, et venenatis felis vestibulum quis. Pellentesque finibus auctor quam. Sed et leo orci. Donec vitae nunc ac diam aliquam blandit id at lacus. Mauris eu risus tempor, cursus orci ultricies, tempor libero. Integer faucibus suscipit dignissim. Maecenas suscipit sapien tortor, at gravida ipsum fringilla a. Curabitur arcu mauris, rhoncus consectetur magna maximus, dictum sodales eros. Proin fermentum hendrerit risus ultricies posuere. <br> <br>
-
-                Phasellus pretium eu nulla at suscipit. Praesent tristique nibh et dolor porttitor, et elementum nibh vulputate. Cras sodales odio quis ligula tempor fringilla. Proin porta felis pharetra, accumsan massa at, efficitur dui. Fusce varius ante non fermentum faucibus. Aenean nec massa gravida, sagittis lorem at, efficitur eros. Mauris ultrices nisl vitae auctor gravida. Proin convallis auctor ante eu cursus. Vestibulum fringilla sit amet enim eu pellentesque. Integer id urna viverra libero consequat aliquet vitae vitae velit. Nullam volutpat sodales est vel ullamcorper. Pellentesque hendrerit hendrerit sollicitudin. Mauris in sem in felis malesuada pulvinar. Donec semper elit quis ultricies interdum. Aliquam elementum vulputate rhoncus. Sed blandit nibh quis consectetur tempor.</p>
+                <p>{{Bio}}</p>
             </div>
             <div class="col-sm-4">
                 <h2>Songs</h2>
@@ -16,37 +14,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Heaven's in Here</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Under the God</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Working Class Hero</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Amazing</td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>I Can't Read</td>
-                      </tr>
-                      <tr>
-                        <td>6</td>
-                        <td>Prisoner of Love</td>
-                      </tr>
-                      <tr>
-                        <td>7</td>
-                        <td>Tin Machine</td>
-                      </tr>
-                      <tr>
-                        <td>8</td>
-                        <td>Maggie's Farm (Live)</td>
+                      <tr *ngFor="let item of songs; let i = index">
+                        <td>{{i}}</td>
+                        <td>{{item.SongName}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -54,21 +24,9 @@
         </div>
         <div class="col-sm-12">
             <h2>Similar</h2>
-            <div class="col-sm-3 similar">
-                <img src="app/components/img/2.png" alt="" class="album">
-                <h4>Similar Album</h4>
-            </div>
-            <div class="col-sm-3 similar">
-                <img src="app/components/img/2.png" alt="" class="album">
-                <h4>Similar Album</h4>
-            </div>
-            <div class="col-sm-3 similar">
-                <img src="app/components/img/2.png" alt="" class="album">
-                <h4>Similar Album</h4>
-            </div>
-            <div class="col-sm-3 similar">
-                <img src="app/components/img/2.png" alt="" class="album">
-                <h4>Similar Album</h4>
+            <div class="col-sm-3 similar" *ngFor="let item of similar">
+                <img src="{{item.ImgString[2]}}" alt="" class="album">
+                <h4>{{item.Name}}</h4>
             </div>
         </div>
     </div>

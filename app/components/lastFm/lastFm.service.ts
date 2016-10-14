@@ -25,4 +25,9 @@ export class LastFmService {
         return this.http.get(this.uri+"GetArtist/"+name)
                         .map((response:Response) => response.json());
     }
+    public getArtistInfo(name:string){
+        return this.http.get(this.uri+"GetArtistInfo/"+name)
+                        .map((response:Response) => response.json());
+    }
+
 }

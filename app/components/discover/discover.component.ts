@@ -28,9 +28,9 @@ export class DiscoverComponent implements OnInit {
                       .subscribe(result =>  this.tracks = this.getFewTracks(12,result),
                                 error=> console.log(error));
     }
-    redirect(artist:String){
-        this.router.navigate(['artist',artist,'overview']);
-        console.log(name);
+    redirect(artist:string){
+        this.router.navigate(['artist',artist]);
+        localStorage.setItem('artist',artist);
     }
     ngOnInit() {
         this.loadAlbums();

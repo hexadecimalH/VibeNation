@@ -28,8 +28,8 @@ var DiscoverComponent = (function () {
             .subscribe(function (result) { return _this.tracks = _this.getFewTracks(12, result); }, function (error) { return console.log(error); });
     };
     DiscoverComponent.prototype.redirect = function (artist) {
-        this.router.navigate(['artist', artist, 'overview']);
-        console.log(name);
+        this.router.navigate(['artist', artist]);
+        localStorage.setItem('artist', artist);
     };
     DiscoverComponent.prototype.ngOnInit = function () {
         this.loadAlbums();

@@ -3,23 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
 
-import { WelcomeComponent,DiscoverComponent,ArtistComponent,OverviewComponent } from './components/index'
-import { SongsComponent,AlbumsComponent,SimilarComponent, PlaylistComponent} from './components/index'
+import { WelcomeComponent,DiscoverComponent,ArtistComponent } from './components/index'
+import {PlaylistComponent} from './components/index'
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
   { path:'discover',component:DiscoverComponent},
   { path:'playlist',component:PlaylistComponent},
-  { path:'artist',
-  children:[
-        {path:'',component:ArtistComponent,loadChildren:'overview',children:[
-                {path:':artist/overview',component:OverviewComponent},
-                {path:':artist/songs',component:SongsComponent},
-                {path:':artist/albums',component:AlbumsComponent},
-                {path:':artist/similar',component:SimilarComponent}
-          ]},
-  ]
-}
+  { path:'artist/:artist',component:ArtistComponent}
 ];
 export const appRoutingProviders: any[] = [
 

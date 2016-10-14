@@ -5,10 +5,6 @@ export * from './artist/artist.component'
 export * from './welcome/welcome.component'
 export * from './discover/discover.component'
 export * from './playlist/playlist.component'
-export * from './artist/sections/songs/songs.component'
-export * from './artist/sections/albums/albums.component'
-export * from './artist/sections/similar/similar.component'
-export * from './artist/sections/overview/overview.component'
 
 
 //Services
