@@ -9,12 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/toPromise');
+require('rxjs/add/operator/map');
 var YouTubeService = (function () {
-    function YouTubeService() {
+    function YouTubeService(http) {
+        this.http = http;
+        this.uri = "http://localhost:57730/api/";
     }
+    YouTubeService.prototype.getArtistVideoId = function (obj) {
+        var url = this.uri + "GetYTid/";
+        var body = JSON.stringify(obj);
+        var header = new http_1.Headers({ "Content-Type": "application/json" });
+        var options = new http_1.RequestOptions({ headers: header });
+        return this.http.post(url, body, options);
+    };
     YouTubeService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], YouTubeService);
     return YouTubeService;
 }());

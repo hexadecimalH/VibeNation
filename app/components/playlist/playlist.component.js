@@ -9,10 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var data_service_1 = require('../lastFm/data.service');
+require('YTapi.js');
 var PlaylistComponent = (function () {
-    function PlaylistComponent() {
+    function PlaylistComponent(service) {
+        this.service = service;
     }
-    PlaylistComponent.prototype.ngOnInit = function () { };
+    PlaylistComponent.prototype.playSong = function (url) {
+        new changeSong(url);
+    };
+    PlaylistComponent.prototype.deleteSong = function (url, i) {
+        console.log(this.playlist[i]);
+        //this.service.deleteSong(url).subscribe(res => console.log(res),
+        //                                      err => console.log(err));
+    };
+    PlaylistComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.service.getList().subscribe(function (res) { return _this.playlist = res; }, function (err) { return console.log(err); });
+    };
     PlaylistComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -20,7 +34,7 @@ var PlaylistComponent = (function () {
             templateUrl: 'playlist.component.html',
             styleUrls: ['playlist.style.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [data_service_1.DataService])
     ], PlaylistComponent);
     return PlaylistComponent;
 }());

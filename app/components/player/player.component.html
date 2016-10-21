@@ -1,0 +1,19 @@
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 vibePlayer">
+                <div class="col-sm-8">
+
+                </div>
+                <div class="col-sm-2">
+                    <input type="range" min ="0" max="100" step ="5" value ="100" [(ngModel)]="tone" (change)="ajustPlayer()">
+                </div>
+                <div class="col-sm-1">
+                    <img src="app/components/img/play.png" (click)="play()" (mouseenter)="changePic($event)" (mouseleave)="changePic($event)" class="pic"/>
+                </div>
+                <div class="col-sm-1">
+                    <img src="app/components/img/pause.png" (click)="pause()" (mouseenter)="changePaus($event)" (mouseleave)="changePaus($event)" class="pic"/>
+                </div>
+
+            </div>
+        </div>
+    </div>

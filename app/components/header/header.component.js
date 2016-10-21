@@ -10,12 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var auth_service_1 = require('../signIn/auth.service');
+var data_service_1 = require('../lastFm/data.service');
 //  import { TrackScrollDirective } from '../../directives/track-scroll.directive'
 var router_1 = require('@angular/router');
 var HeaderComponent = (function () {
-    function HeaderComponent(router, auth) {
+    function HeaderComponent(router, auth, service) {
         this.router = router;
         this.auth = auth;
+        this.service = service;
         this.isActive = false;
     }
     HeaderComponent.prototype.scrollDown = function (event) {
@@ -24,6 +26,14 @@ var HeaderComponent = (function () {
     };
     HeaderComponent.prototype.getStyle = function () {
         return this.isActive ? "#2d2d2d" : "";
+    };
+    HeaderComponent.prototype.logOut = function () {
+        this.auth.logOut();
+        this.router.navigate([""]);
+    };
+    HeaderComponent.prototype.search = function () {
+        var _this = this;
+        this.service.searchArtist(this.keyString).subscribe(function (res) { _this.artist = res; console.log(res); }, function (err) { return console.log(err); });
     };
     HeaderComponent.prototype.ngOnInit = function () {
     };
@@ -40,7 +50,7 @@ var HeaderComponent = (function () {
             templateUrl: 'header.component.html',
             styleUrls: ['header.style.css'],
         }), 
-        __metadata('design:paramtypes', [router_1.Router, auth_service_1.AuthService])
+        __metadata('design:paramtypes', [router_1.Router, auth_service_1.AuthService, data_service_1.DataService])
     ], HeaderComponent);
     return HeaderComponent;
 }());

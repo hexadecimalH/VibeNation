@@ -12,7 +12,23 @@ var core_1 = require('@angular/core');
 var FooterComponent = (function () {
     function FooterComponent() {
     }
-    FooterComponent.prototype.ngOnInit = function () { };
+    FooterComponent.prototype.ytCredentials = function () {
+        var _this = this;
+        this.loadAPI = new Promise(function (resolve) {
+            _this.loadScript();
+        });
+    };
+    FooterComponent.prototype.loadScript = function () {
+        var node = document.createElement('script');
+        node.src = "YTapi.js";
+        node.type = 'text/javascript';
+        node.async = true;
+        node.charset = 'utf-8';
+        document.getElementsByTagName('head')[0].appendChild(node);
+    };
+    FooterComponent.prototype.ngOnInit = function () {
+        this.ytCredentials();
+    };
     FooterComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

@@ -1,6 +1,8 @@
 
 import { Component, OnInit , NgModule, HostListener} from '@angular/core';
 import { AuthService } from '../signIn/auth.service'
+import { DataService } from '../lastFm/data.service'
+
 //  import { TrackScrollDirective } from '../../directives/track-scroll.directive'
 import { Router } from '@angular/router'
 @Component({
@@ -12,6 +14,8 @@ import { Router } from '@angular/router'
 })
 export class HeaderComponent implements OnInit {
     private isActive:boolean = false;
+    private artist:any[];
+    private keyString:string;
     @HostListener('window:scroll', ['$event']) 
     scrollDown(event:any) {
         let offset = document.body.scrollTop;
@@ -23,9 +27,18 @@ export class HeaderComponent implements OnInit {
     private loadScrollScript:Promise<any>;
 
     constructor(private router:Router,
-                private auth:AuthService) { }
-
+                private auth:AuthService,
+                private service:DataService) { }
+    logOut(){
+        this.auth.logOut();
+        this.router.navigate([""]);
+    }
+    search(){
+        this.service.searchArtist(this.keyString).subscribe(res => {this.artist = res; console.log(res)},
+                                              err => console.log(err));
+    }
     ngOnInit() { 
         
     }
+
 }

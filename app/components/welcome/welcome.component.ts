@@ -21,27 +21,50 @@ export class WelcomeComponent implements OnInit {
     private loadAPI:Promise<any>;
     private matching:boolean;
     private isSet:boolean = true;
+    private message:string = "";
+    private messageIn:string = "";
 
     constructor(private service:SignService,
                 private auth:AuthService,
                 private router:Router) { }
-
+    sendMail(){
+        if(this.eMail == null || this.eMail == undefined){
+            this.messageIn ="Please enter valid mail ";
+            return;
+        }
+        this.service.makeRequestForNewPass(this.eMail).subscribe(res => this.router.navigate(["forgtenPass",res.text().replace(/"/g, "")]) ,
+                                                                error =>this.messageIn ="Please enter valid mail ");
+        
+    }
      buttonPressed($event:any){
             $event.target.childNodes[0].data == "Sign Up" ? this.isSet = true :  this.isSet = false;
      }
      signIn(){
          this.user = new User(this.eMail,this.password);
          this.service.signIn(this.user).subscribe(
-            res=>this.auth.logIn(res.text()) ,
-            error=>console.log(error)
+            res=> this.handleSignInResponse(res.text()),
+            error=>this.messageIn = "Wrong Password Please enter correct one " 
         );
+     }
+     handleSignInResponse(res:string){
+        this.auth.logIn(res);
+        this.router.navigate(["discover"]);
      }
      signUp(){
          this.user = new User(this.eMail,this.password);
          this.service.signUp(this.user).subscribe(
-            res=>console.log(res.text()) ,
-            error=>console.log(error)
+            res=> this.handleResponse(res.text()),
+            error=>this.message = "Account on this e-mail already exists " 
          )
+     }
+     handleResponse(res:any){
+         console.log(res);
+         if(res == "Already exists"){
+            this.message = "Account on this e-mail already exists "; 
+            return
+         }
+         this.auth.logIn(res);
+         this.router.navigate(['discover'])
      }
      passMatch(){
          console.log(this.password +" " + this.secPassword);

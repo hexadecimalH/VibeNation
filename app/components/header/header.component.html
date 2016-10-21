@@ -7,17 +7,18 @@
             </div>
             <div  class="col-sm-4 col-sm-offset-6 right">
                 <div  class="col-sm-6 list">
-                    <div class="col-sm-4"><p><a routerLink="/discover">Discover</a></p></div>
-                    <div class="col-sm-4"><p><a routerLink="/playlist">Playlists</a></p></div>
+                    <div class="col-sm-4" *ngIf="auth.isLogedIn()"><p><a routerLink="/discover">Discover</a></p></div>
+                    <div class="col-sm-4" *ngIf="auth.isLogedIn()"><p><a routerLink="/playlist">Playlists</a></p></div>
                     <div class="col-sm-4">
                         <p>
                             <a *ngIf="!auth.isLogedIn()">Log In</a>
-                            <a *ngIf="auth.isLogedIn()">Log Out</a>
+                            <a *ngIf="auth.isLogedIn()" (click)="logOut()">Log Out</a>
                         </p>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <input class="form-control" placeholder="Search..." type="text">
+                    <input class="form-control" placeholder="Search..." type="text" [(ngModel)]="keyString" (change)="search()" >
+
                 </div>
                 
             </div>

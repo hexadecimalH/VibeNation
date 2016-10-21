@@ -14,7 +14,7 @@ import { routing, appRoutingProviders} from './app.routing';
 
 import { LastFmService,YouTubeService,HeaderComponent,FooterComponent } from './components/index'
 import {  WelcomeComponent , SignService,AuthService,DiscoverComponent} from './components/index'
-import {  ArtistComponent} from './components/index'
+import {  ArtistComponent , ForgotenPassComponent,PlayerComponent} from './components/index'
 import {  PlaylistComponent } from './components/index'
 import { AppComponent }  from './app.component';
 import { DataService } from './components/lastFm/data.service'
@@ -27,11 +27,13 @@ import { DataService } from './components/lastFm/data.service'
                   WelcomeComponent,
                   DiscoverComponent,
                   PlaylistComponent,
-                  ArtistComponent
+                  ArtistComponent,
+                  ForgotenPassComponent,
+                  PlayerComponent
                   //TrackScrollDirective
                   ],
   bootstrap: [ AppComponent],
-  providers:[YouTubeService,LastFmService,SignService,appRoutingProviders,AuthService]
+  providers:[YouTubeService,LastFmService,SignService,DataService,appRoutingProviders,AuthService]
 
 })
 export class AppModule { }

@@ -20,146 +20,26 @@
                 <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th>Rank</th>
+                        <th>Artist</th>
                         <th>Song Name</th>
+                        <th>Action</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Heaven's in Here</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Under the God</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Working Class Hero</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Amazing</td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>I Can't Read</td>
-                      </tr>
-                      <tr>
-                        <td>6</td>
-                        <td>Prisoner of Love</td>
-                      </tr>
-                      <tr>
-                        <td>7</td>
-                        <td>Tin Machine</td>
-                      </tr>
-                      <tr>
-                        <td>8</td>
-                        <td>Maggie's Farm (Live)</td>
+                      <tr *ngFor="let item of playlist; let i = index">
+                        <td>{{item.Artist}}</td>
+                        <td>{{item.SongName}}</td>
+                        <td class="play">
+                            <img src="app/components/img/play.png" (click)="playSong(item.YTUrl,i)"/>
+                        </td>
+                        <td>
+                          <span class="glyphicon glyphicon-remove" aria-hidden="true" (click)="deleteSong(item.YTUrl)"></span>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
             </div>
         </div>
-        <div class="col-sm-12 list">
-            <div class="col-sm-4">
-                <img src="app/components/img/5.png" alt="" class="album">
-            </div>
-            <div class="col-sm-8">
-                <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Rank</th>
-                        <th>Song Name</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Heaven's in Here</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Under the God</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Working Class Hero</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Amazing</td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>I Can't Read</td>
-                      </tr>
-                      <tr>
-                        <td>6</td>
-                        <td>Prisoner of Love</td>
-                      </tr>
-                      <tr>
-                        <td>7</td>
-                        <td>Tin Machine</td>
-                      </tr>
-                      <tr>
-                        <td>8</td>
-                        <td>Maggie's Farm (Live)</td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-        </div>
-        <div class="col-sm-12 list">
-            <div class="col-sm-4">
-                <img src="app/components/img/5.png" alt="" class="album">
-            </div>
-            <div class="col-sm-8">
-                <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Rank</th>
-                        <th>Song Name</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Heaven's in Here</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Under the God</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Working Class Hero</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Amazing</td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>I Can't Read</td>
-                      </tr>
-                      <tr>
-                        <td>6</td>
-                        <td>Prisoner of Love</td>
-                      </tr>
-                      <tr>
-                        <td>7</td>
-                        <td>Tin Machine</td>
-                      </tr>
-                      <tr>
-                        <td>8</td>
-                        <td>Maggie's Farm (Live)</td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-        </div>
-    </div>
-    
-        
+    </div>        
 </div>

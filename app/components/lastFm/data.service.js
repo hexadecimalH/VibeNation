@@ -9,10 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
 require('rxjs/add/operator/map');
 var DataService = (function () {
-    function DataService() {
+    function DataService(http) {
+        this.http = http;
+        this.uri = "http://localhost:57730/api/";
     }
     DataService.prototype.setArtist = function (name) {
         this.artist = name;
@@ -20,9 +23,33 @@ var DataService = (function () {
     DataService.prototype.getArtist = function () {
         return this.artist;
     };
+    DataService.prototype.addSong = function (obj) {
+        var par = localStorage.getItem("user");
+        var url = this.uri + "AddToPlaylist/" + par.replace(/"/g, "");
+        var body = JSON.stringify(obj);
+        var header = new http_1.Headers({ "Content-Type": "application/json" });
+        var options = new http_1.RequestOptions({ headers: header });
+        return this.http.post(url, body, options);
+    };
+    DataService.prototype.deleteSong = function (str) {
+        var url = this.uri + "DeleteSong/";
+        var body = JSON.stringify(str);
+        var header = new http_1.Headers({ "Content-Type": "application/json" });
+        var options = new http_1.RequestOptions({ headers: header });
+        return this.http.post(url, body, options);
+    };
+    DataService.prototype.getList = function () {
+        var par = localStorage.getItem("user");
+        var url = this.uri + "GetPlaylist/" + par.replace(/"/g, "");
+        return this.http.get(url).map(function (response) { return response.json(); });
+    };
+    DataService.prototype.searchArtist = function (str) {
+        var url = this.uri + "Search/" + str;
+        return this.http.get(url).map(function (response) { return response.json(); });
+    };
     DataService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], DataService);
     return DataService;
 }());

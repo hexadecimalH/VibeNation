@@ -1,0 +1,21 @@
+<div class="container main">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h3>Enter your new password</h3>
+            <form>   
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" class="form-control" id="password" [(ngModel)]="password" name="password" (keyup)="passMatch()">
+                </div>
+                <div class="form-group">
+                    <label for="rePassword">Re-Type Password</label>
+                    <input type="password" class="form-control" id="rePassword" [(ngModel)]="rePassword" name="rePassword" (keyup)="passMatch()" >
+                    <div  class="alert alert-danger" *ngIf="matching">
+                            Passwords doesn't match
+                    </div>
+                </div>
+                <button class="btn btn-default" (click)="submitPass()">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

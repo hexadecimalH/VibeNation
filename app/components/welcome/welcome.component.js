@@ -19,18 +19,42 @@ var WelcomeComponent = (function () {
         this.auth = auth;
         this.router = router;
         this.isSet = true;
+        this.message = "";
+        this.messageIn = "";
     }
+    WelcomeComponent.prototype.sendMail = function () {
+        var _this = this;
+        if (this.eMail == null || this.eMail == undefined) {
+            this.messageIn = "Please enter valid mail ";
+            return;
+        }
+        this.service.makeRequestForNewPass(this.eMail).subscribe(function (res) { return _this.router.navigate(["forgtenPass", res.text().replace(/"/g, "")]); }, function (error) { return _this.messageIn = "Please enter valid mail "; });
+    };
     WelcomeComponent.prototype.buttonPressed = function ($event) {
         $event.target.childNodes[0].data == "Sign Up" ? this.isSet = true : this.isSet = false;
     };
     WelcomeComponent.prototype.signIn = function () {
         var _this = this;
         this.user = new index_1.User(this.eMail, this.password);
-        this.service.signIn(this.user).subscribe(function (res) { return _this.auth.logIn(res.text()); }, function (error) { return console.log(error); });
+        this.service.signIn(this.user).subscribe(function (res) { return _this.handleSignInResponse(res.text()); }, function (error) { return _this.messageIn = "Wrong Password Please enter correct one "; });
+    };
+    WelcomeComponent.prototype.handleSignInResponse = function (res) {
+        this.auth.logIn(res);
+        this.router.navigate(["discover"]);
     };
     WelcomeComponent.prototype.signUp = function () {
+        var _this = this;
         this.user = new index_1.User(this.eMail, this.password);
-        this.service.signUp(this.user).subscribe(function (res) { return console.log(res.text()); }, function (error) { return console.log(error); });
+        this.service.signUp(this.user).subscribe(function (res) { return _this.handleResponse(res.text()); }, function (error) { return _this.message = "Account on this e-mail already exists "; });
+    };
+    WelcomeComponent.prototype.handleResponse = function (res) {
+        console.log(res);
+        if (res == "Already exists") {
+            this.message = "Account on this e-mail already exists ";
+            return;
+        }
+        this.auth.logIn(res);
+        this.router.navigate(['discover']);
     };
     WelcomeComponent.prototype.passMatch = function () {
         console.log(this.password + " " + this.secPassword);

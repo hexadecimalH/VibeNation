@@ -1,0 +1,11 @@
+.vibePlayer{
+    border-top:1pt solid red;
+    position:fixed;
+    bottom:0;
+    left:0;
+}
+.pic{
+    height:auto;
+    width:20%;
+    margin:5%;
+}

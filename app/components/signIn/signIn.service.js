@@ -28,6 +28,19 @@ var SignService = (function () {
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.post(this.baseUrl + "UserCreate", body, options);
     };
+    SignService.prototype.submitNewPass = function (password) {
+        var body = JSON.stringify(password);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this.baseUrl + "NewPass", body, options);
+    };
+    SignService.prototype.makeRequestForNewPass = function (email) {
+        var uri = this.baseUrl + "NewPassRequest/";
+        var body = JSON.stringify(email);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(uri, body, options);
+    };
     SignService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, http_1.RequestOptions])

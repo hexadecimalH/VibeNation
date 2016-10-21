@@ -10,20 +10,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var lastFm_service_1 = require('../lastFm/lastFm.service');
+var youtube_service_1 = require('../youtube/youtube.service');
 var router_1 = require('@angular/router');
 var data_service_1 = require('../lastFm/data.service');
+require('YTapi.js');
 var ArtistComponent = (function () {
-    function ArtistComponent(router, route, fmService, data) {
+    function ArtistComponent(router, route, fmService, data, ytService) {
         this.router = router;
         this.route = route;
         this.fmService = fmService;
         this.data = data;
+        this.ytService = ytService;
         this.activePage = [true, false, false, false, false];
     }
     ArtistComponent.prototype.getArtistInfo = function (artist) {
-        var _this = this;
-        this.fmService.getArtist(artist)
-            .subscribe(function (result) { _this.Bio = result.Bio; _this.songs = result.TopTracks; _this.similar = result.Similar; _this.ImgStrings = result.ImgString; console.log(result); }, function (error) { return console.log("error"); });
+        return this.fmService.getArtist(artist);
     };
     ArtistComponent.prototype.getArtistName = function () {
         return this.route.params.forEach(function (param) {
@@ -35,9 +36,44 @@ var ArtistComponent = (function () {
         this.activePage[num] = true;
         console.log(this.activePage[num]);
     };
+    ArtistComponent.prototype.reduceData = function (n, data) {
+        var array = [];
+        for (var i = 0; i < n; i++) {
+            array.push(data[i]);
+        }
+        return array;
+    };
+    ArtistComponent.prototype.playSong = function (item) {
+        var _this = this;
+        this.ytService.getArtistVideoId({ "Artist": item.Artist, "SongName": item.SongName })
+            .subscribe(function (res) { console.log(res["_body"]); _this.play(res["_body"]); }, function (err) { return console.log(err); });
+    };
+    ArtistComponent.prototype.play = function (id) {
+        new changeSong(id);
+    };
+    ArtistComponent.prototype.addToPlaylist = function (item) {
+        console.log(item);
+        this.data.addSong({ "Artist": item.Artist, "SongName": item.SongName }).subscribe(function (res) { return console.log(res); }, function (err) { return console.log(err); });
+    };
+    ArtistComponent.prototype.navigateTo = function (name) {
+        localStorage.setItem('artist', name);
+        this.router.navigate(['artist', name]);
+        this.ngOnInit();
+    };
     ArtistComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.artist = localStorage.getItem('artist');
-        this.getArtistInfo(this.artist);
+        this.getArtistInfo(this.artist).subscribe(function (result) {
+            _this.bio = result.Bio.toString();
+            _this.songs = _this.reduceData(15, result.TopTracks);
+            _this.similar = _this.reduceData(4, result.Similar);
+            _this.img = result.ImgString[2];
+            _this.albumsSide = _this.reduceData(3, result.Albums);
+            _this.similarWide = result.Similar;
+            _this.albums = result.Albums;
+            _this.topTracks = result.TopTracks;
+            console.log(result);
+        }, function (error) { return console.log("Error"); });
     };
     ArtistComponent = __decorate([
         core_1.Component({
@@ -47,7 +83,7 @@ var ArtistComponent = (function () {
             styleUrls: ['artist.style.css'],
             providers: [data_service_1.DataService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, lastFm_service_1.LastFmService, data_service_1.DataService])
+        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, lastFm_service_1.LastFmService, data_service_1.DataService, youtube_service_1.YouTubeService])
     ], ArtistComponent);
     return ArtistComponent;
 }());

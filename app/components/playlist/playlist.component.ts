@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService} from '../lastFm/data.service'
+
+declare var changeSong: any;
+
+import 'YTapi.js';
 
 @Component({
     moduleId: module.id,
@@ -7,7 +12,20 @@ import { Component, OnInit } from '@angular/core';
     styleUrls:['playlist.style.css']
 })
 export class PlaylistComponent implements OnInit {
-    constructor() { }
+    private playlist:any[];
+    constructor(private service:DataService) { }
 
-    ngOnInit() { }
+    playSong(url:string){
+        new changeSong(url);
+    }
+    deleteSong(url:string,i:number){
+        console.log(this.playlist[i]);
+
+        //this.service.deleteSong(url).subscribe(res => console.log(res),
+          //                                      err => console.log(err));
+    }
+    ngOnInit() {
+        this.service.getList().subscribe(res => this.playlist = res,
+                                        err => console.log(err));
+     }
 }
