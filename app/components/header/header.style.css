@@ -31,3 +31,22 @@
     display: inline-block;
     vertical-align: middle;
 }
+.searchBox{
+    position:fixed;
+    top:6%;
+    right:0%;
+    background-color:#fff;
+    padding:0;
+    cursor:pointer;
+}
+.boxes{
+    transition:all .5s ease 0s;
+    cursor:pointer;
+}
+.boxes:hover{
+    background-color:#2d2d2d;
+    padding:0;
+}
+.boxes:hover h5{
+    color:#fff;
+}

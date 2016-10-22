@@ -21,6 +21,7 @@ var ArtistComponent = (function () {
         this.fmService = fmService;
         this.data = data;
         this.ytService = ytService;
+        this.modal = false;
         this.activePage = [true, false, false, false, false];
     }
     ArtistComponent.prototype.getArtistInfo = function (artist) {
@@ -43,22 +44,36 @@ var ArtistComponent = (function () {
         }
         return array;
     };
-    ArtistComponent.prototype.playSong = function (item) {
+    ArtistComponent.prototype.playSong = function (item, event) {
         var _this = this;
+        event.stopPropagation();
         this.ytService.getArtistVideoId({ "Artist": item.Artist, "SongName": item.SongName })
             .subscribe(function (res) { console.log(res["_body"]); _this.play(res["_body"]); }, function (err) { return console.log(err); });
+    };
+    ArtistComponent.prototype.stopPropagiation = function (event) {
+        event.stopPropagation();
+    };
+    ArtistComponent.prototype.changeData = function (item) {
+        this.modalTitle = item.AlbumName;
+        this.modalPic = item.ImgString[3];
+        console.log(item.ImgString);
+        this.modalSongs = item.Songs;
     };
     ArtistComponent.prototype.play = function (id) {
         new changeSong(id);
     };
-    ArtistComponent.prototype.addToPlaylist = function (item) {
+    ArtistComponent.prototype.addToPlaylist = function (item, event) {
         console.log(item);
+        event.stopPropagation();
         this.data.addSong({ "Artist": item.Artist, "SongName": item.SongName }).subscribe(function (res) { return console.log(res); }, function (err) { return console.log(err); });
     };
     ArtistComponent.prototype.navigateTo = function (name) {
         localStorage.setItem('artist', name);
         this.router.navigate(['artist', name]);
         this.ngOnInit();
+    };
+    ArtistComponent.prototype.showModal = function () {
+        this.modal ? this.modal = false : this.modal = true;
     };
     ArtistComponent.prototype.ngOnInit = function () {
         var _this = this;

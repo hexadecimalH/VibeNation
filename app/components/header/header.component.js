@@ -33,7 +33,12 @@ var HeaderComponent = (function () {
     };
     HeaderComponent.prototype.search = function () {
         var _this = this;
-        this.service.searchArtist(this.keyString).subscribe(function (res) { _this.artist = res; console.log(res); }, function (err) { return console.log(err); });
+        this.keyString == "" || this.keyString == null ? this.artist = [] : this.service.searchArtist(this.keyString).subscribe(function (res) { _this.artist = res; console.log(res); }, function (err) { return console.log(err); });
+    };
+    HeaderComponent.prototype.navigate = function (artist) {
+        this.artist = [];
+        localStorage.setItem('artist', artist);
+        this.router.navigate(['artist', artist]);
     };
     HeaderComponent.prototype.ngOnInit = function () {
     };

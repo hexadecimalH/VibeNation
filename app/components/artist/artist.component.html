@@ -6,7 +6,7 @@
                     <img src="{{img}}" alt="" class="pic">
                 </div>
                 <div class="col-sm-9">
-                    <h2>{{artist}}</h2>
+                    <h2 class="title">{{artist}}</h2>
                 </div>
             </div>
             <div class="col-sm-4 col-sm-offset-2">
@@ -40,9 +40,9 @@
                         <td>{{i + 1}}</td>
                         <td>{{item.SongName}}</td>
                         <td class="play">
-                            <img src="app/components/img/play.png" (click)="playSong(item)"/>
+                            <img src="app/components/img/play.png" (click)="playSong(item,$event)"/>
                         </td>
-                        <td (click)="addToPlaylist(item)">+Add To Playlists</td>
+                        <td (click)="addToPlaylist(item,$event)" class="addToPlaylist">+Add To Playlists</td>
                       </tr>
                     </tbody>
                   </table>
@@ -50,7 +50,7 @@
         </div>
         <div class="col-sm-12">
             <h2>Similar</h2>
-            <div class="col-sm-3 similar" *ngFor="let item of similar" (click)="navigateTo(item.Name)">
+            <div class="col-sm-3 similar" *ngFor="let item of similar" (click)="navigateTo(item.Name)" >
                 <img src="{{item.ImgString[2]}}" alt="" class="album">
                 <h4>{{item.Name}}</h4>
             </div>
@@ -58,7 +58,7 @@
     </div>
     <div class="row content" *ngIf="activePage[1]">
         <h1>Albums</h1>
-        <div class="col-sm-4" *ngFor="let item of albums">
+        <div class="col-sm-4" *ngFor="let item of albums" (click)="showModal()" (mouseenter)="changeData(item)">
             <img src="{{item.ImgString[2]}}" alt="" class="album">
             <h4>{{item.AlbumName}}</h4>
         </div>
@@ -95,23 +95,23 @@
                         <td>{{i + 1}}</td>
                         <td>{{item.SongName}}</td>
                         <td class="play">
-                            <img src="app/components/img/play.png" (click)="playSong(item)"/>
+                            <img src="app/components/img/play.png" (click)="playSong(item,$event)"/>
                         </td>
-                        <td (click)="addToPlaylist(item)">+Add To Playlists</td>
+                        <td (click)="addToPlaylist(item,$event)" class="addToPlaylist" >+Add To Playlists</td>
                       </tr>
                     </tbody>
                   </table>
             </div>
             <div class="col-sm-4">
                 <h1>Albums</h1>
-               <div class="col-sm-12 side" *ngFor="let item of albumsSide">
+               <div class="col-sm-12 side" *ngFor="let item of albumsSide" (click)="showModal()" (mouseenter)="changeData(item)">
                    <img src="{{item.ImgString[2]}}" alt="" class="album">
                    <h3>{{item.AlbumName}}</h3>
                </div>                
             </div>
             <div class="col-sm-12">
                 <h2>Similar</h2>
-                <div class="col-sm-3 similar" *ngFor="let item of similar" (click)="navigateTo(item.Name)">
+                <div class="col-sm-3 similar" *ngFor="let item of similar" (click)="navigateTo(item.Name)" >
                     <img src="{{item.ImgString[2]}}" alt="" class="album">
                     <h4>{{item.Name}}</h4>
                 </div>
@@ -119,3 +119,38 @@
         </div>
     </div>
 </div>
+<div class="block" *ngIf="modal" (click)="showModal()">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 modalj" (click)="stopPropagiation($event)">
+                <h1>{{modalTitle}}</h1>
+                <div class="col-sm-6">
+                    <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Rank</th>
+                        <th>Song Name</th>
+                        <th>Action</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of modalSongs; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{item.SongName}}</td>
+                        <td class="play">
+                            <img src="app/components/img/play.png" (click)="playSong(item,$event)"/>
+                        </td>
+                        <td (click)="addToPlaylist(item,$event)" class="addToPlaylist" >+Add To Playlists</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-sm-6 artcover">
+                    <img src="{{modalPic}}" alt="" >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

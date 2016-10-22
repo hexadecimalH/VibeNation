@@ -29,7 +29,11 @@ export class ArtistComponent implements OnInit {
     private topTracks:any[];
     private similarWide:any[];
     private albumsSide:any[];
-    private ArtistData:Artist; 
+    private ArtistData:Artist;
+    private modalSongs:any[];
+    private modalPic:string;
+    private modalTitle:string;
+    private modal:boolean = false; 
 
     private activePage:boolean[] = [true,false,false,false,false];
 
@@ -60,17 +64,28 @@ export class ArtistComponent implements OnInit {
         }
         return array;
     }
-    playSong(item:any){
+    playSong(item:any,event:any){
+        event.stopPropagation();
         this.ytService.getArtistVideoId({"Artist":item.Artist,"SongName":item.SongName})
                             .subscribe(res =>{console.log(res["_body"]); this.play(res["_body"])},
                                         err => console.log(err));
         
     }
+    stopPropagiation(event:any){
+        event.stopPropagation();
+    }
+    changeData(item:any){
+        this.modalTitle = item.AlbumName;
+        this.modalPic = item.ImgString[3];
+        console.log(item.ImgString)
+        this.modalSongs = item.Songs;
+    }
     play(id:string){
         new changeSong(id); 
     }
-    addToPlaylist(item:any){
+    addToPlaylist(item:any,event:any){
         console.log(item);
+        event.stopPropagation();
         this.data.addSong({"Artist":item.Artist,"SongName":item.SongName}).subscribe(res => console.log(res),
                                                                                     err => console.log(err));
     }
@@ -78,6 +93,9 @@ export class ArtistComponent implements OnInit {
         localStorage.setItem('artist',name);
         this.router.navigate(['artist',name]);
         this.ngOnInit();
+    }
+    showModal(){
+        this.modal ? this.modal = false : this.modal = true ; 
     }
     ngOnInit() { 
         this.artist = localStorage.getItem('artist');

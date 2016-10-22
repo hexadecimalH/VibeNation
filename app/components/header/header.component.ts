@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
     private isActive:boolean = false;
     private artist:any[];
     private keyString:string;
+
     @HostListener('window:scroll', ['$event']) 
     scrollDown(event:any) {
         let offset = document.body.scrollTop;
@@ -34,8 +35,13 @@ export class HeaderComponent implements OnInit {
         this.router.navigate([""]);
     }
     search(){
-        this.service.searchArtist(this.keyString).subscribe(res => {this.artist = res; console.log(res)},
-                                              err => console.log(err));
+        this.keyString == "" || this.keyString == null ? this.artist = [] : this.service.searchArtist(this.keyString).subscribe(res => {this.artist = res; console.log(res)},
+                                                                                                                                err => console.log(err)); 
+    }
+    navigate(artist:string){
+        this.artist= [];
+        localStorage.setItem('artist',artist);
+        this.router.navigate(['artist',artist]);
     }
     ngOnInit() { 
         

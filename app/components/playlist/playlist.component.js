@@ -19,9 +19,8 @@ var PlaylistComponent = (function () {
         new changeSong(url);
     };
     PlaylistComponent.prototype.deleteSong = function (url, i) {
-        console.log(this.playlist[i]);
-        //this.service.deleteSong(url).subscribe(res => console.log(res),
-        //                                      err => console.log(err));
+        this.playlist.splice(i, 1);
+        this.service.deleteSong(url).subscribe(function (res) { return console.log(res); }, function (err) { return console.log(err); });
     };
     PlaylistComponent.prototype.ngOnInit = function () {
         var _this = this;

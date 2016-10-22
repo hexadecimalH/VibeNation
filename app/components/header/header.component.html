@@ -17,10 +17,19 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <input class="form-control" placeholder="Search..." type="text" [(ngModel)]="keyString" (change)="search()" >
+                    <input class="form-control" placeholder="Search..." type="text" [(ngModel)]="keyString" (keydown)="search()" >
 
                 </div>
-                
+                <div class="col-sm-2 searchBox">
+                    <div class="col-sm-12 boxes" *ngFor="let item of artist" (click)="navigate(item.Name)">
+                        <div class="col-sm-4">
+                            <img src="{{item.ImgString[0]}}" alt="">
+                        </div>
+                        <div class="col-sm-8">
+                            <h5>{{item.Name}}</h5>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

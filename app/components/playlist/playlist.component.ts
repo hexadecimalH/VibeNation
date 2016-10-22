@@ -19,10 +19,9 @@ export class PlaylistComponent implements OnInit {
         new changeSong(url);
     }
     deleteSong(url:string,i:number){
-        console.log(this.playlist[i]);
-
-        //this.service.deleteSong(url).subscribe(res => console.log(res),
-          //                                      err => console.log(err));
+        this.playlist.splice(i,1);
+        this.service.deleteSong(url).subscribe(res => console.log(res),
+                                               err => console.log(err));
     }
     ngOnInit() {
         this.service.getList().subscribe(res => this.playlist = res,

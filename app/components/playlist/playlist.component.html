@@ -31,10 +31,10 @@
                         <td>{{item.Artist}}</td>
                         <td>{{item.SongName}}</td>
                         <td class="play">
-                            <img src="app/components/img/play.png" (click)="playSong(item.YTUrl,i)"/>
+                            <img src="app/components/img/play.png" (click)="playSong(item.YTUrl)"/>
                         </td>
                         <td>
-                          <span class="glyphicon glyphicon-remove" aria-hidden="true" (click)="deleteSong(item.YTUrl)"></span>
+                          <span class="glyphicon glyphicon-remove" aria-hidden="true" (click)="deleteSong(item.YTUrl,i)"></span>
                         </td>
                       </tr>
                     </tbody>
